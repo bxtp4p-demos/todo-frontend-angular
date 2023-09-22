@@ -1,0 +1,52 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/universal
+{
+	"name": "Frontend and Backend Configuration",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+	
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	
+	"forwardPorts": [3000, 3001],
+	"portsAttributes": {
+		"3001": {
+			"label": "Frontend",
+			"onAutoForward": "openPreview"
+		},
+		"3000": {
+			"label": "Backend"
+		}
+	},
+
+	"initializeCommand": "./.devcontainer/initialize.sh",
+	"postCreateCommand": "./.devcontainer/post-create.sh",
+	"updateContentCommand": "cd /workspaces && git clone https://github.com/bxtp4p-demos/todo-backend.git 2> /dev/null || true && cd todo-backend && git pull",
+	"postStartCommand": "cd /workspaces/todo-backend/server && npm install && cd /workspaces/todo-frontend && npm install",
+	
+	"customizations": {
+		"codespaces": {
+			"repositories": {
+				"bxtp4p-demos/todo-backend": {
+					"clonePath": "/workspaces/todo-backend",
+					"permissions": {
+						"contents": "write",
+						"metadata": "read"
+					}
+				}
+			}
+		},
+		"vscode": {
+			"extensions": [
+				"cweijan.vscode-redis-client",
+				"humao.rest-client"
+			],
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/zsh"
+			}
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/redis-homebrew:1": {}
+	}
+}
