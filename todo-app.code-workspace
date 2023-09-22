@@ -23,7 +23,7 @@
 			{
 				"label": "start frontend",
 				"type": "shell",
-				"command": "cd /workspaces/todo-frontend && npm start",
+				"command": "cd /workspaces/todo-frontend-angular && npm run serve",
 			}
 		]
 	}
