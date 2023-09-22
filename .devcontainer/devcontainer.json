@@ -22,7 +22,7 @@
 	"initializeCommand": "./.devcontainer/initialize.sh",
 	"postCreateCommand": "./.devcontainer/post-create.sh",
 	"updateContentCommand": "cd /workspaces && git clone https://github.com/bxtp4p-demos/todo-backend.git 2> /dev/null || true && cd todo-backend && git pull",
-	"postStartCommand": "cd /workspaces/todo-backend/server && npm install && cd /workspaces/todo-frontend && npm install",
+	"postStartCommand": "cd /workspaces/todo-backend/server && npm install && cd /workspaces/todo-frontend-angular && npm install",
 	
 	"customizations": {
 		"codespaces": {
@@ -39,7 +39,8 @@
 		"vscode": {
 			"extensions": [
 				"cweijan.vscode-redis-client",
-				"humao.rest-client"
+				"humao.rest-client",
+				"Angular.ng-template"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/zsh"

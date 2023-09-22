@@ -1,0 +1,30 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../todo-backend"
+		}
+	],
+	"settings": {
+		"yaml.schemas": {
+			"https://www.artillery.io/schema.json": []
+		}
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "start backend",
+				"type": "shell",
+				"command": "cd /workspaces/todo-backend/server && RATE_LIMIT_MAX_REQUESTS=5000 node index.js",
+			},
+			{
+				"label": "start frontend",
+				"type": "shell",
+				"command": "cd /workspaces/todo-frontend && npm start",
+			}
+		]
+	}
+}
