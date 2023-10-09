@@ -9,12 +9,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TodoService {
-  private todosUrl = 'http://localhost:3000/todos';
+  private todosUrl = 'http://localhost:8080/todos';
 
   constructor(private http: HttpClient) { }
 
   getTodos(): Observable<Todo[]> {
-    const source = this.http.get<string[]>(this.todosUrl);
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json; charset=utf-8');
+    headers.set('X-Custom-Header', 'test123');
+    const source = this.http.get<string[]>(this.todosUrl, { headers: headers });
     
     const todos = source.pipe(map(response => {
       return response.map((res, i) => {
