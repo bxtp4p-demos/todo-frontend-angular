@@ -16,11 +16,11 @@ There is also a [VS Code workspace file](todo-app.code-workspace#L2) to configur
 
 Due to a [known issue](https://github.com/orgs/community/discussions/15351#discussioncomment-4112535) with Codespaces port visibility and CORS, you will need to open this codespace in VS Code Desktop.
 
-Once the codespace is opened, open the VS Code workspace and run the `Run Backend` task. This will start the Spring Boot backend.
+Once the codespace is opened, open the VS Code workspace and run the `start backend` task. This will start the Spring Boot backend.
 
-Then run the `Run Frontend` task. This will start the Angular app and proxy requests to the backend.
+Then run the `start frontend` task. This will start the Angular app and proxy requests to the backend.
 
-Once the frontend is running, you can access the app at `https://localhost:4200`.
+Once the frontend is running, you can access the app at https://localhost:4200.
 
 ![Add To-Do Item](images/add-todo.jpg "Add To-Do Item")
 
