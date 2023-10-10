@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>New To-Do</h1>
+<div mat-dialog-content>
+   <div>
+      <mat-label>Title</mat-label>
+   </div>
+   <mat-form-field [style.width]="'100%'">
+      <input matInput [(ngModel)]="data.title" width="100%" />
+   </mat-form-field>
+   <div>
+      <mat-label>Description</mat-label>
+   </div>
+   <mat-form-field [style.width]="'100%'">
+      <input matInput [(ngModel)]="data.description" />
+   </mat-form-field>
+   <div>
+      <mat-label>Completed</mat-label>
+   </div>
+   <mat-checkbox [(ngModel)]="data.completed" [checked]="data.completed ? 'checked' : ''" />
+</div>
+<div mat-dialog-actions>
+   <button mat-button (click)="cancel()">Cancel</button>
+   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>

@@ -1,0 +1,22 @@
+table.todo-table {
+   width: 100%;
+   display: table;
+   table-layout: fixed;
+}
+
+.mat-column-title {
+   width: 25%;
+}
+
+.mat-column-description {
+   width: 50%;
+}
+
+.mat-column-completed {
+   width: 15%;
+   text-align: center;
+}
+
+.add-todo-container {
+   margin-bottom: 20px;
+}

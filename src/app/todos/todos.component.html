@@ -1,5 +1,58 @@
-<ul>
-   <li *ngFor="let todo of todos">
-       <span>{{todo.note}}</span>
-   </li>
- </ul>
+<div class="todo-container">
+  <div align="end" class="add-todo-container">
+    <button mat-raised-button *ngIf="!isAdding" (click)="openDialog()">
+      <mat-label>Add To-Do</mat-label>
+      <mat-icon [fontIcon]="'add'"></mat-icon>
+    </button>
+  </div>
+
+  <div class="todo-list">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 todo-table">
+      <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ col.label }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div [ngSwitch]="col.type" *ngIf="!element.isEditing">
+            <div class="btn-edit" *ngSwitchCase="'isEditing'">
+              <button mat-button (click)="element.isEditing = !element.isEditing">
+                <mat-icon [fontIcon]="element.isEditing ? 'done' : 'edit'"></mat-icon>
+              </button>
+            </div>
+            <div class="btn-delete" *ngSwitchCase="'delete'">
+              <button mat-button (click)="delete(element)">
+                <mat-icon [fontIcon]="'delete'"></mat-icon>
+              </button>
+            </div>
+            <span *ngSwitchCase="'checkbox'">
+              <mat-checkbox [(ngModel)]="element[col.key]" [disabled]="true"
+                [checked]="element[col.key] ? 'checked' : ''" />
+            </span>
+            <span *ngSwitchDefault>
+              {{ element[col.key] }}
+            </span>
+          </div>
+          <div *ngIf="element.isEditing">
+            <div class="btn-edit" *ngIf="col.key === 'isEditing'">
+              <button mat-button (click)="element.isEditing = !element.isEditing; update(element)">Done</button>
+            </div>
+            <ng-container [ngSwitch]="col.type">
+
+              <span *ngSwitchCase="'checkbox'">
+                <mat-checkbox [(ngModel)]="element[col.key]" [checked]="element[col.key] ? 'checked' : ''" />
+              </span>
+
+              <mat-form-field *ngSwitchCase="'text'">
+                <input matInput [type]="col.type" [value]="element[col.key]" [(ngModel)]="element[col.key]" />
+              </mat-form-field>
+
+            </ng-container>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

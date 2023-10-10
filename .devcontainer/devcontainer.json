@@ -3,18 +3,19 @@
 	"name": "Angular App Frontend and Spring Boot Backend",
 	"image": "mcr.microsoft.com/devcontainers/universal:2-linux",
 	
-	"forwardPorts": [4200, 3000],
+	"forwardPorts": [4200, 8080],
 	"portsAttributes": {
 		"4200": {
 			"label": "Frontend"
 		},
 		"8080": {
-			"label": "Backend - Spring Boot"
+			"label": "Backend"
 		}
 	},
 	
-	"updateContentCommand": "cd /workspaces && git clone https://github.com/bxtp4p-demos/codespaces-spring-boot-mysql-template.git 2> /dev/null || false && cd codespaces-spring-boot-mysql-template && git pull",
+	"updateContentCommand": "cd /workspaces && git clone https://github.com/bxtp4p-demos/codespaces-spring-boot-mysql-template.git 2> /dev/null || true && cd codespaces-spring-boot-mysql-template && git pull",
 	"postStartCommand": "cd /workspaces/todo-frontend-angular && npm install",
+	"postCreateCommand": "npm install -g @angular/cli",
 	
 	"customizations": {
 		"codespaces": {
