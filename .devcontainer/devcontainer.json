@@ -1,33 +1,27 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/universal
+
 {
-	"name": "Frontend and Backend Configuration",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"name": "Angular App Frontend and Spring Boot Backend",
 	"image": "mcr.microsoft.com/devcontainers/universal:2-linux",
 	
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-	
-	"forwardPorts": [4200, 3000],
+	"forwardPorts": [4200, 8080],
 	"portsAttributes": {
 		"4200": {
 			"label": "Frontend"
 		},
-		"3000": {
+		"8080": {
 			"label": "Backend"
 		}
 	},
-
-	"initializeCommand": "./.devcontainer/initialize.sh",
-	"postCreateCommand": "./.devcontainer/post-create.sh",
-	"updateContentCommand": "cd /workspaces && git clone https://github.com/bxtp4p-demos/todo-backend.git 2> /dev/null || true && cd todo-backend && git pull",
-	"postStartCommand": "cd /workspaces/todo-backend/server && npm install && cd /workspaces/todo-frontend-angular && npm install",
+	
+	"updateContentCommand": "cd /workspaces && git clone https://github.com/bxtp4p-demos/codespaces-spring-boot-mysql-template.git 2> /dev/null || true && cd codespaces-spring-boot-mysql-template && git pull",
+	"postStartCommand": "cd /workspaces/todo-frontend-angular && npm install",
+	"postCreateCommand": "npm install -g @angular/cli",
 	
 	"customizations": {
 		"codespaces": {
 			"repositories": {
-				"bxtp4p-demos/todo-backend": {
-					"clonePath": "/workspaces/todo-backend",
+				"bxtp4p-demos/codespaces-spring-boot-mysql-template": {
+					"clonePath": "/workspaces/codespaces-spring-boot-mysql-template",
 					"permissions": {
 						"contents": "write",
 						"metadata": "read"
@@ -37,16 +31,9 @@
 		},
 		"vscode": {
 			"extensions": [
-				"cweijan.vscode-redis-client",
 				"humao.rest-client",
 				"Angular.ng-template"
-			],
-			"settings": {
-				"terminal.integrated.shell.linux": "/bin/zsh"
-			}
+			]
 		}
-	},
-	"features": {
-		"ghcr.io/devcontainers-contrib/features/redis-homebrew:1": {}
 	}
 }

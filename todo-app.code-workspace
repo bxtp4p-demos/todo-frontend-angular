@@ -4,13 +4,15 @@
 			"path": "."
 		},
 		{
-			"path": "../todo-backend"
+			"path": "/workspaces/codespaces-spring-boot-mysql-template"
 		}
 	],
 	"settings": {
 		"yaml.schemas": {
 			"https://www.artillery.io/schema.json": []
-		}
+		},
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.compile.nullAnalysis.mode": "automatic"
 	},
 	"tasks": {
 		"version": "2.0.0",
@@ -18,7 +20,7 @@
 			{
 				"label": "start backend",
 				"type": "shell",
-				"command": "cd /workspaces/todo-backend/server && RATE_LIMIT_MAX_REQUESTS=5000 node index.js",
+				"command": "cd /workspaces/codespaces-spring-boot-mysql-template/app && mvn clean package spring-boot:run",
 			},
 			{
 				"label": "start frontend",
